@@ -65,6 +65,7 @@ La aplicación estará disponible en:
 Frontend: http://localhost:3000
 
 Backend API: http://localhost:5000
+```
 
 ⚙️ Configuración Manual
 Backend
