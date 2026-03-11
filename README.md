@@ -1,11 +1,11 @@
-XFlow - Gestión y Monitorización de Infraestructuras VDI
+## XFlow - Gestión y Monitorización de Infraestructuras VDI
 https://img.shields.io/badge/license-MIT-blue.svg
 https://img.shields.io/badge/python-3.8%252B-blue
 https://img.shields.io/badge/docker-supported-brightgreen
 
 XFlow es una plataforma completa para la gestión, monitorización y control de infraestructuras de Virtual Desktop Infrastructure (VDI). Permite administrar sesiones de usuarios, desplegar jobs y visualizar métricas en tiempo real a través de una interfaz web intuitiva.
 
-📋 Tabla de Contenidos
+## 📋 Tabla de Contenidos
 Características Principales
 
 Arquitectura
@@ -30,7 +30,7 @@ Contribución
 
 Licencia
 
-✨ Características Principales
+## ✨ Características Principales
 Monitorización en Tiempo Real: Visualiza métricas de CPU, memoria y estado de sesiones de todas tus VDs
 
 Gestión de Jobs: Repositorio integrado de jobs para ejecutar tareas en las máquinas virtuales
