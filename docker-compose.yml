@@ -1,0 +1,38 @@
+services:
+  xflow-backend:
+    build:
+      context: ./manager/backend
+      dockerfile: Dockerfile
+    container_name: xflow-backend
+    ports:
+      - "8080:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - VIRTUAL_HOST=xflow-api.gsduran.es
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=xflow-api.gsduran.es
+      - LETSENCRYPT_EMAIL=gsduran@gsduran.es
+    restart: unless-stopped
+    networks:
+      - frontend
+
+  xflow-frontend:
+    build:
+      context: ./manager/frontend
+      dockerfile: Dockerfile
+    container_name: xflow-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VIRTUAL_HOST=xflow.gsduran.es
+      - VIRTUAL_PORT=5173
+      - LETSENCRYPT_HOST=xflow.gsduran.es
+      - LETSENCRYPT_EMAIL=gsduran@gsduran.es
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true
