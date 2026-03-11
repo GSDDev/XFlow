@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
-import { LayoutDashboard, Briefcase, Settings } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Settings, Key } from 'lucide-react';
 import Dashboard from './components/Dashboard';
 import JobsDashboard from './components/JobsDashboard';
+import VariablesDashboard from './components/VariablesDashboard';
+import CredentialsDashboard from './components/CredentialsDashboard';
 import Login from './components/Login';
 import logo from './assets/logo.png';
 
@@ -91,6 +93,13 @@ function App() {
                 >
                   <Settings size={20} />
                 </button>
+                <button
+                  className={`icon-button ${currentTab === 'credentials' ? 'active' : ''}`}
+                  onClick={() => setCurrentTab('credentials')}
+                  title="Credentials Vault"
+                >
+                  <Key size={20} />
+                </button>
               </nav>
             </div>
             <button className="icon-button logout-btn" onClick={handleLogout} title="Logout">
@@ -100,12 +109,8 @@ function App() {
           <main>
             {currentTab === 'vdis' && <Dashboard agents={agents} socket={socket} />}
             {currentTab === 'jobs' && <JobsDashboard />}
-            {currentTab === 'variables' && (
-              <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center' }}>
-                <h2>Variables Dashboard</h2>
-                <p style={{ color: 'var(--text-secondary)' }}>Coming soon...</p>
-              </div>
-            )}
+            {currentTab === 'variables' && <VariablesDashboard />}
+            {currentTab === 'credentials' && <CredentialsDashboard />}
           </main>
         </>
       )}

@@ -1,4 +1,17 @@
 services:
+  db:
+    image: postgres:15-alpine
+    container_name: xflow-db
+    environment:
+      - POSTGRES_USER=xflow_user
+      - POSTGRES_PASSWORD=xflow_password
+      - POSTGRES_DB=xflow_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - frontend
+
   xflow-backend:
     build:
       context: ./manager/backend
@@ -13,6 +26,9 @@ services:
       - VIRTUAL_PORT=8000
       - LETSENCRYPT_HOST=xflow-api.gsduran.es
       - LETSENCRYPT_EMAIL=gsduran@gsduran.es
+      - DATABASE_URL=postgresql://xflow_user:xflow_password@db:5432/xflow_db
+    depends_on:
+      - db
     restart: unless-stopped
     networks:
       - frontend
@@ -36,3 +52,6 @@ services:
 networks:
   frontend:
     external: true
+
+volumes:
+  postgres_data:
